@@ -44,6 +44,18 @@ cnn = loadModel.CNN
 cnn.model = cnn.loadTrainingModel(self=cnn)
 classes = ['COPD-Mild', 'COPD-Severe', 'Interstitial Lung Disease', 'Normal']
 
+def countdown():
+    countdowntime = 35
+    my_bar = st.progress(0)
+    my_text = st.text('{}s'.format(0))
+
+    start = time.time()
+    for i in range(countdowntime):    
+        time.sleep(1)
+        end = time.time()
+        # st.info('countdown for {} seconds'.format(countdowntime-np.round(end-start)))
+        my_bar.progress(int(100/35*(end-start))-1)
+        my_text.text('{}s'.format(countdowntime-np.round(end-start)))
 
 def main():
     
@@ -83,7 +95,10 @@ def main():
                 channels=len(audio_frame.layout.channels),
             )
             sound_chunk += sound    
-            
+        
+        #Countdown
+        countdown()
+    
         state_button = st.button('Result!!')
         if state_button:
             # try:
