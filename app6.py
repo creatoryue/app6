@@ -40,6 +40,6 @@ DATA_DIR = os.path.join(ROOT_DIR, 'data')
 
 # Load Model 
 cnn = loadModel.CNN
-# cnn.model = cnn.loadTrainingModel(cnn)
+cnn.model = cnn.loadTrainingModel(cnn)
 classes = ['COPD-Mild', 'COPD-Severe', 'Interstitial Lung Disease', 'Normal']
 
