@@ -48,7 +48,7 @@ classes = ['COPD-Mild', 'COPD-Severe', 'Interstitial Lung Disease', 'Normal']
 def main():
     
     st.header("Classificaion for lung condition DEMO")
-    st.info('Please prepare your microphong. Press "START" to breathe NORMALLY toward your microphone. Wait for 35 seconds. And press "Result!!" to show the results. Have fun!!')
+    'Please prepare your microphong. Press "START" to breathe NORMALLY toward your microphone. Wait for 35 seconds. And press "Result!!" to show the results. Have fun!!'
     
     "### Recording"
     
