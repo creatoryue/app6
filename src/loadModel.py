@@ -1,6 +1,8 @@
 from keras.optimizers import Adam
 from keras.layers import Dense, Dropout, Flatten, Conv1D, MaxPooling1D, BatchNormalization
 from keras import models
+from tensorflow.keras.models import load_model
+
 import librosa
 import numpy as np
 from settings import MODEL_H5
@@ -39,7 +41,8 @@ class CNN(object):
         '''load the CNN model'''
         # self.model = models.load_model('.\\models\\model.h5')
         # self.model = models.load_model('CNN_for4lungcondition_20210717.h5')
-        self.model = models.load_model(MODEL_H5)
+        # self.model = models.load_model(MODEL_H5)
+        self.model = load_model(MODEL_H5)
         
         return self.model
     
