@@ -3,7 +3,7 @@ from keras.layers import Dense, Dropout, Flatten, Conv1D, MaxPooling1D, BatchNor
 from keras import models
 from tensorflow.keras.models import load_model
 
-# import librosa
+import librosa
 import numpy as np
 from settings import MODEL_H5
 
@@ -54,11 +54,9 @@ class CNN(object):
         self.model.summary()
         
     def samplePred(self, data):
-        # data, sampling_rate = librosa.load(path_test+'\\'+ filename)
-        # X = librosa.feature.mfcc(data)
+        X = librosa.feature.mfcc(data)
         XX = X[:, 0:n_timesteps]
         XX = XX.T[np.newaxis, ...]
-        #XX.shape
         data_pred = self.model.predict(XX)
         # data_pred = np.argmax(np.round(data_pred), axis=1)
         
