@@ -91,15 +91,15 @@ def main():
             sound_chunk = sound_chunk.set_channels(1) # Stereo to mono
             sample = np.array(sound_chunk.get_array_of_samples())
             
-            st.success('PLotting the data...') 
+            
             fig_place = st.empty()
             fig, [ax_time, ax_mfcc] = plt.subplots(2,1)
             
             ax_time.cla()
             times = (np.arange(-len(sample), 0)) / sound_chunk.frame_rate
             ax_time.plot(times, sample)
-
-            st.info('Librosa.mfcc ...')
+            
+            
             # try:
             X = librosa.feature.mfcc(sample/1.0)
             # except:
@@ -108,6 +108,8 @@ def main():
             ax_mfcc.cla()
             librosa.display.specshow(X, x_axis='time')
             fig_place.pyplot(fig)
+            st.success('PLotting the data...') 
+            
             
             #Do Prediction
             data_pred = cnn.samplePred(cnn, sample/1.0)
