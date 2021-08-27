@@ -4,8 +4,8 @@ import streamlit as st
 import pydub
 import numpy as np
 import matplotlib.pyplot as plt
-import librosa
-import librosa.display
+# import librosa
+# import librosa.display
 from src import loadModel
 import time
 
