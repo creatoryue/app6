@@ -1,7 +1,6 @@
-librosa==0.6.1
-tensorboard==2.2.0
-tensorflow==2.2.0
-streamlit 
-numba==0.48.0
+librosa
+tensorboard
+tensorflow
+
 
 
