@@ -5,3 +5,8 @@ librosa==0.8.1
 matplotlib==3.3.4
 
 tensorflow==2.2.0
+
+
+streamlit
+streamlit_webrtc
+pydub
