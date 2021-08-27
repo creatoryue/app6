@@ -2,6 +2,7 @@ audioread==2.1.9
 h5py
 Keras==2.4.3
 librosa==0.8.1
+numpy
 matplotlib==3.3.4
 tensorflow==2.3.0
 
