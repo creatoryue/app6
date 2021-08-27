@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 #import librosa
 #import librosa.display
 
-# from src import loadModel
+from src import loadModel
 import time
 
 # from aiortc.contrib.media import MediaRecorder
@@ -21,7 +21,7 @@ from streamlit_webrtc import (
     webrtc_streamer,
 )
 
-#cnn = loadModel.CNN
-#cnn.model = cnn.loadTrainingModel(self=cnn)
+cnn = loadModel.CNN
+cnn.model = cnn.loadTrainingModel(self=cnn)
 classes = ['COPD-Mild', 'COPD-Severe', 'Interstitial Lung Disease', 'Normal']
 
