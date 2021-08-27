@@ -1,6 +1,5 @@
-numpy == 1.19.0
-tensorflow
-librosa
-
-
+librosa==0.6.1
+tensorboard==1.8.0
+tensorflow==1.8.0
+streamlit 
 
