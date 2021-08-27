@@ -1,5 +1,5 @@
 audioread==2.1.9
-h5py==2.10.0
+h5py==3.1.0
 Keras==2.6.0
 librosa==0.8.1
 matplotlib==3.3.4
