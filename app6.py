@@ -22,6 +22,7 @@ from streamlit_webrtc import (
 )
 
 
+
 HERE = Path(__file__).parent
 logger = logging.getLogger(__name__)
 
@@ -37,11 +38,77 @@ import os
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(ROOT_DIR, 'data')
 
-# def saveWavFile(fn):    
-#     WAVE_OUTPUT_FILE = os.path.join(DATA_DIR, "{}.wav".format(fn))
-#     return WAVE_OUTPUT_FILE
 
 # Load Model 
 cnn = loadModel.CNN
 cnn.model = cnn.loadTrainingModel(self=cnn)
 classes = ['COPD-Mild', 'COPD-Severe', 'Interstitial Lung Disease', 'Normal']
+
+
+def main():
+    st.header("# Classificaion for lung condition demo.")
+    "### Recording"
+    
+    webrtc_ctx = webrtc_streamer(
+        key="sendonly-audio",
+        mode=WebRtcMode.SENDONLY,
+        audio_receiver_size=1792, #256 = 5 seconds
+        client_settings=WEBRTC_CLIENT_SETTINGS,
+    )
+    
+    if not webrtc_ctx.audio_receiver:
+        st.info('Now condition: Stop recording.')
+        
+        
+    if webrtc_ctx.audio_receiver:
+        st.info('Now strat recording.\n Please breathe toward the microphone.')
+        try:
+            audio_frames = webrtc_ctx.audio_receiver.get_frames(timeout=1)
+        except:
+            logger.warning("Queue is empty. Abort.")
+            st.error('ohoh')
+            
+        sound_chunk = pydub.AudioSegment.empty()
+        for audio_frame in audio_frames:
+            sound = pydub.AudioSegment(
+                data=audio_frame.to_ndarray().tobytes(),
+                sample_width=audio_frame.format.bytes,
+                frame_rate=audio_frame.sample_rate,
+                channels=len(audio_frame.layout.channels),
+            )
+            sound_chunk += sound    
+            
+        state_button = st.button('Click to show the data')
+        if state_button:
+            # try:
+            # st.text('Click!')
+            sound_chunk = sound_chunk.set_channels(1) # Stereo to mono
+            sample = np.array(sound_chunk.get_array_of_samples())
+            
+            st.success('PLotting the data...') 
+            fig_place = st.empty()
+            fig, [ax_time, ax_mfcc] = plt.subplots(2,1)
+            
+            ax_time.cla()
+            times = (np.arange(-len(sample), 0)) / sound_chunk.frame_rate
+            ax_time.plot(times, sample)
+
+            st.info('Librosa.mfcc ...')
+            # try:
+            X = librosa.feature.mfcc(sample/1.0)
+            # except:
+                # st.error('Something wrong with librosa.feature.mfcc ...')
+                
+            ax_mfcc.cla()
+            librosa.display.specshow(X, x_axis='time')
+            fig_place.pyplot(fig)
+            
+            #Do Prediction
+            data_pred = cnn.samplePred(cnn, sample/1.0)
+            data_pred_class = np.argmax(np.round(data_pred), axis=1)
+    
+            
+            s1 = classes[data_pred_class[0]] # s2 is the number of the classes
+            s2 = np.round(float(data_pred[0,data_pred_class])*100, 4) # s1 is the percentage of the predicted class
+            st.text("Predict class: {} for {}%".format(s1, s2))
+
