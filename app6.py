@@ -46,8 +46,8 @@ classes = ['COPD-Mild', 'COPD-Severe', 'Interstitial Lung Disease', 'Normal']
 
 
 def main():
-    st.header("# Classificaion for lung condition demo.")
-    "### Recording"
+    st.header("Classificaion for lung condition demo.")
+    "# Recording"
     
     webrtc_ctx = webrtc_streamer(
         key="sendonly-audio",
