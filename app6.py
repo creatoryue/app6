@@ -21,7 +21,7 @@ from streamlit_webrtc import (
     webrtc_streamer,
 )
 
-cnn = loadModel.CNN
-cnn.model = cnn.loadTrainingModel(self=cnn)
+#cnn = loadModel.CNN
+#cnn.model = cnn.loadTrainingModel(self=cnn)
 classes = ['COPD-Mild', 'COPD-Severe', 'Interstitial Lung Disease', 'Normal']
 
