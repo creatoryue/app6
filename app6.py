@@ -96,11 +96,13 @@ def main():
             )
             sound_chunk += sound    
         
+
+    
+        state_button = st.button('Result!!')
         #Countdown
         if not state_button:
             countdown()
-    
-        state_button = st.button('Result!!')
+        
         if state_button:
             # try:
             # st.text('Click!')
