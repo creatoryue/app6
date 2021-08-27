@@ -46,8 +46,11 @@ classes = ['COPD-Mild', 'COPD-Severe', 'Interstitial Lung Disease', 'Normal']
 
 
 def main():
-    st.header("Classificaion for lung condition demo.")
-    "# Recording"
+    
+    "# Classificaion for lung condition demo."
+    st.info('Please prepare your microphong. Press "START" to breathe NORMALLY toward your microphone. Wait for 35 seconds. And press "Result!!" to show the results. Have fun!!')
+    
+    "### Recording"
     
     webrtc_ctx = webrtc_streamer(
         key="sendonly-audio",
@@ -78,7 +81,7 @@ def main():
             )
             sound_chunk += sound    
             
-        state_button = st.button('Click to show the data')
+        state_button = st.button('Result!!')
         if state_button:
             # try:
             # st.text('Click!')
