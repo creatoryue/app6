@@ -1,5 +1,5 @@
 librosa==0.6.1
-tensorboard==1.8.0
+tensorboard==2.2.0
 tensorflow==2.2.0
 streamlit 
 
