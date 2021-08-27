@@ -2,5 +2,5 @@ import librosa
 import tensorflow
 
 
-"""#Lung Classification Web APP"""
+"""Lung Classification Web APP"""
 
