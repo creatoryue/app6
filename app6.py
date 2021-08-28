@@ -62,6 +62,7 @@ def DoTheTest(fn, filepath):
     state_button_test1 = st.button(fn)
     if state_button_test1:
         sound_data, sr = librosa.load(filepath, sr=44100)
+        st.text(sound_data)
         data_pred = cnn.samplePred(cnn, sound_data)
         data_pred_class = np.argmax(np.round(data_pred), axis=1)
 
