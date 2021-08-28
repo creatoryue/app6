@@ -81,7 +81,7 @@ def main():
     state_button_test1 = st.button('Test1')
     if state_button_test1:
         data = librosa.load(DATA_DIR_VOICE_1)
-
+        data_pred = cnn.samplePred(cnn, data)
             
             
     if webrtc_ctx.audio_receiver:
