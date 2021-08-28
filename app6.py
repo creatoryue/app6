@@ -22,7 +22,6 @@ from streamlit_webrtc import (
 )
 
 
-
 HERE = Path(__file__).parent
 logger = logging.getLogger(__name__)
 
@@ -57,6 +56,18 @@ def countdown():
         # st.info('countdown for {} seconds'.format(countdowntime-np.round(end-start)))
         my_bar.progress(int(100/35*(end-start))-1)
         my_text.text('{}s'.format(countdowntime-np.round(end-start)))
+
+        
+def DoTheTest(fn, filepath):
+    state_button_test1 = st.button(fn)
+    if state_button_test1:
+        sound_data, sr = librosa.load(filepath, sr=44100)
+        data_pred = cnn.samplePred(cnn, sound_data)
+        data_pred_class = np.argmax(np.round(data_pred), axis=1)
+
+        s1 = classes[data_pred_class[0]]
+        s2 = np.round(float(data_pred[0,data_pred_class])*100, 4)
+        st.text("Predict class: {} for {}%".format(s1, s2))
 
 def main():
     
