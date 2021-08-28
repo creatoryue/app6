@@ -80,9 +80,13 @@ def main():
     
     state_button_test1 = st.button('Test1')
     if state_button_test1:
-        sound_data = librosa.load(DATA_DIR_VOICE_1, sr=44100)
-        st.text(sound_data)
-            
+        sound_data, sr = librosa.load(DATA_DIR_VOICE_1, sr=44100)
+        data_pred = cnn.samplePred(cnn, sound_data)
+        data_pred_class = np.argmax(np.round(data_pred), axis=1)
+    
+        s1 = classes[data_pred_class[0]]
+        s2 = np.round(float(data_pred[0,data_pred_class])*100, 4)
+        st.text("Predict class: {} for {}%".format(s1, s2))
             
     if webrtc_ctx.audio_receiver:
         st.info('Now strat recording.\n Please breathe toward the microphone.')
