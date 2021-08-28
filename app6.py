@@ -77,8 +77,16 @@ def main():
     
     if not webrtc_ctx.audio_receiver:
         st.info('Now condition: Stop recording.')
-        
-        
+    
+    if state_button_test1 = st.button('Test1'):
+        data_pred = cnn.samplePred(cnn, librosa.load(DATA_DIR_VOICE_1))
+        data_pred_class = np.argmax(np.round(data_pred), axis=1)
+
+        s1 = classes[data_pred_class[0]] # s2 is the number of the classes
+        s2 = np.round(float(data_pred[0,data_pred_class])*100, 4) # s1 is the percentage of the predicted class
+        st.text("Predict class: {} for {}%".format(s1, s2))
+            
+            
     if webrtc_ctx.audio_receiver:
         st.info('Now strat recording.\n Please breathe toward the microphone.')
         try:
@@ -97,7 +105,7 @@ def main():
             )
             sound_chunk += sound    
         
-
+        
     
         state_button = st.button('Result!!')
         #Countdown
@@ -136,7 +144,6 @@ def main():
             #Do Prediction
             data_pred = cnn.samplePred(cnn, sample/1.0)
             data_pred_class = np.argmax(np.round(data_pred), axis=1)
-    
             
             s1 = classes[data_pred_class[0]] # s2 is the number of the classes
             s2 = np.round(float(data_pred[0,data_pred_class])*100, 4) # s1 is the percentage of the predicted class
