@@ -119,15 +119,15 @@ def main():
             
             
             # try:
-            X = librosa.load(sound_chunk)
-            XX = librosa.feature.mfcc(X)
+            # X = librosa.load(sound_chunk)
+            # XX = librosa.feature.mfcc(X)
             
-            # X = librosa.feature.mfcc(sample/1.0)
+            X = librosa.feature.mfcc(sample/1.0)
             # except:
                 # st.error('Something wrong with librosa.feature.mfcc ...')
                 
             ax_mfcc.cla()
-            librosa.display.specshow(XX, x_axis='time')
+            librosa.display.specshow(X, x_axis='time')
             fig_place.pyplot(fig)
             st.success('PLotting the data...') 
             
