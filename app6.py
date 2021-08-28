@@ -106,8 +106,8 @@ def main():
         if state_button:
             # try:
             # st.text('Click!')
-            sound_chunk = sound_chunk.set_channels(1) # Stereo to mono
-            sample = np.array(sound_chunk.get_array_of_samples())
+            sound_chunk_mono = sound_chunk.set_channels(1) # Stereo to mono
+            sample = np.array(sound_chunk_mono.get_array_of_samples())
             
             
             fig_place = st.empty()
