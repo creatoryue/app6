@@ -78,7 +78,8 @@ def main():
     if not webrtc_ctx.audio_receiver:
         st.info('Now condition: Stop recording.')
     
-    if state_button_test1 = st.button('Test1'):
+    state_button_test1 = st.button('Test1')
+    if state_button_test1:
         data_pred = cnn.samplePred(cnn, librosa.load(DATA_DIR_VOICE_1))
         data_pred_class = np.argmax(np.round(data_pred), axis=1)
 
