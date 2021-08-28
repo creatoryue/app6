@@ -89,9 +89,9 @@ def main():
     if not webrtc_ctx.audio_receiver:
         st.info('Now condition: Stop recording.')
     
-    # Test1
+    # Test1 & Test
     DoTheTest('Test1', DATA_DIR_VOICE_1)
-    
+    DoTheTest('Test2', DATA_DIR_VOICE_2)
             
     if webrtc_ctx.audio_receiver:
         st.info('Now strat recording.\n Please breathe toward the microphone.')
