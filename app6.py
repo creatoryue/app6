@@ -161,7 +161,7 @@ def main():
             st.success('PLotting the data...') 
             
             #Play the sounds
-            st.audio(temp_sound_chunk)
+            st.audio(sample)
             
             #Do Prediction
             data_pred = cnn.samplePred(cnn, sample/1.0)
