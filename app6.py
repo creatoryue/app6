@@ -68,6 +68,7 @@ def DoTheTest(fn, filepath):
         fig, ax_time = plt.subplots(1,1)
         times = (np.arange(0, len(sound_data))) / sr
         ax_time.plot(times, sound_data)
+        fig_place.pyplot(fig)
         
         data_pred = cnn.samplePred(cnn, sound_data)
         #st.text('data_pred: {}'.format(data_pred))
