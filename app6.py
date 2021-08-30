@@ -65,14 +65,14 @@ def DoTheTest(fn, filepath):
         st.text(sound_data)
         
         data_pred = cnn.samplePred(cnn, sound_data)
-        st.text('data_pred: {}'.format(data_pred))
+        #st.text('data_pred: {}'.format(data_pred))
         
-        data_pred_class = np.argmax(np.round(data_pred), axis=1)
-        st.text('data_pred_class: {}'.format(data_pred_class))
+        #data_pred_class = np.argmax(np.round(data_pred), axis=1)
+        #st.text('data_pred_class: {}'.format(data_pred_class))
         
-        s1 = classes[data_pred_class[0]]
-        s2 = np.round(float(data_pred[0,data_pred_class])*100, 4)
-        st.text("Predict class: {} for {}%".format(s1, s2))
+        #s1 = classes[data_pred_class[0]]
+        #s2 = np.round(float(data_pred[0,data_pred_class])*100, 4)
+        #st.text("Predict class: {} for {}%".format(s1, s2))
         
         for i in range(len(classes)):
             st.text('{}: {}%'.format(classes[i],np.round(data_pred[0][i]*100,4)))
