@@ -67,7 +67,7 @@ def DoTheTest(fn, filepath):
         
         # Plot in time domain and frequency domain
         fig_place = st.empty()
-        fig, [ax_time, ax_mfcc] = plt.subplots(2,1)
+        fig, [ax_time, ax_mfcc] = plt.subplots(nrows=2, ncols=1, sharex=True)
         
         times = (np.arange(0, len(sound_data))) / sr
         ax_time.plot(times, sound_data)
