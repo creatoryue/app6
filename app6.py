@@ -74,9 +74,9 @@ def DoTheTest(fn, filepath):
         
         X = librosa.feature.mfcc(sound_data/1.0)       
         ax_mfcc.cla()
-        librosa.display.specshow(X, x_axis='time')
+        img = librosa.display.specshow(X, x_axis='time')
         
-        fig.colorbar(X, ax=ax_mfcc, format="%+2.f dB")
+        fig.colorbar(img, ax=ax_mfcc, format="%+2.f dB")
         fig_place.pyplot(fig)
         
         data_pred = cnn.samplePred(cnn, sound_data)
