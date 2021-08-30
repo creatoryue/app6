@@ -143,9 +143,9 @@ def main():
             # try:
             # st.text('Click!')
             temp_sound_chunk = sound_chunk
-            #sound_chunk_mono = sound_chunk.set_channels(1) # Stereo to mono
-            #sample = np.array(sound_chunk_mono.get_array_of_samples())
-            sample = np.array(sound_chunk.get_array_of_samples())
+            sound_chunk_mono = sound_chunk.set_channels(1) # Stereo to mono
+            sample = np.array(sound_chunk_mono.get_array_of_samples())
+            # sample = np.array(sound_chunk.get_array_of_samples())
             
             fig_place = st.empty()
             fig, [ax_time, ax_mfcc] = plt.subplots(2,1)
