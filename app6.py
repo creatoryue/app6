@@ -67,7 +67,7 @@ def DoTheTest(fn, filepath):
         
         # Plot in time domain and frequency domain
         fig_place = st.empty()
-        fig, [ax_time, ax_mfcc] = plt.subplots(nrows=2, ncols=1, sharex=True)
+        fig, [ax_time, ax_mfcc] = plt.subplots(nrows=2, ncols=1)
         
         times = (np.arange(0, len(sound_data))) / sr
         ax_time.plot(times, sound_data)
@@ -76,6 +76,7 @@ def DoTheTest(fn, filepath):
         ax_mfcc.cla()
         librosa.display.specshow(X, x_axis='time')
         
+        fig.colorbar(X, ax=ax_mfcc, format="%+2.f dB")
         fig_place.pyplot(fig)
         
         data_pred = cnn.samplePred(cnn, sound_data)
