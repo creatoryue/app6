@@ -134,6 +134,7 @@ def main():
         if state_button:
             # try:
             # st.text('Click!')
+            temp_sound_chunk = sound_chunk
             sound_chunk_mono = sound_chunk.set_channels(1) # Stereo to mono
             sample = np.array(sound_chunk_mono.get_array_of_samples())
             
@@ -158,6 +159,9 @@ def main():
             librosa.display.specshow(X, x_axis='time')
             fig_place.pyplot(fig)
             st.success('PLotting the data...') 
+            
+            #Play the sounds
+            st.audio(temp_sound_chunk)
             
             #Do Prediction
             data_pred = cnn.samplePred(cnn, sample/1.0)
