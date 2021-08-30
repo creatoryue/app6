@@ -64,6 +64,13 @@ def DoTheTest(fn, filepath):
         sound_data, sr = librosa.load(filepath, sr=44100)
         # st.text(sound_data)
         
+        fig_place = st.empty()
+        fig, ax_time = plt.subplots(1,1)
+        
+        ax_time.plot(times, sound_data)
+        times = (np.arange(0, len(sound_data))) / sr
+        ax_time.plot(times, sound_data)
+        
         data_pred = cnn.samplePred(cnn, sound_data)
         #st.text('data_pred: {}'.format(data_pred))
         
