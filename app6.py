@@ -62,7 +62,7 @@ def DoTheTest(fn, filepath):
     state_button_test1 = st.button(fn)
     if state_button_test1:
         sound_data, sr = librosa.load(filepath, sr=44100)
-        st.text(sound_data)
+        # st.text(sound_data)
         
         data_pred = cnn.samplePred(cnn, sound_data)
         #st.text('data_pred: {}'.format(data_pred))
@@ -153,14 +153,11 @@ def main():
             fig_place.pyplot(fig)
             st.success('PLotting the data...') 
             
-            
             #Do Prediction
             data_pred = cnn.samplePred(cnn, sample/1.0)
-            data_pred_class = np.argmax(np.round(data_pred), axis=1)
-            
-            s1 = classes[data_pred_class[0]] # s2 is the number of the classes
-            s2 = np.round(float(data_pred[0,data_pred_class])*100, 4) # s1 is the percentage of the predicted class
-            st.text("Predict class: {} for {}%".format(s1, s2))
+            st.text('Results')
+            for i in range(len(classes)):
+                st.text('{}: {}%'.format(classes[i],np.round(data_pred[0][i]*100,4)))
 
 if __name__ == '__main__':
     import os
