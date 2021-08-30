@@ -66,8 +66,6 @@ def DoTheTest(fn, filepath):
         
         fig_place = st.empty()
         fig, ax_time = plt.subplots(1,1)
-        
-        ax_time.plot(times, sound_data)
         times = (np.arange(0, len(sound_data))) / sr
         ax_time.plot(times, sound_data)
         
