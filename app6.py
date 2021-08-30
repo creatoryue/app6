@@ -61,13 +61,21 @@ def countdown():
 def DoTheTest(fn, filepath):
     state_button_test1 = st.button(fn)
     if state_button_test1:
+        #Load the sound data
         sound_data, sr = librosa.load(filepath, sr=44100)
         # st.text(sound_data)
         
+        # Plot in time domain and frequency domain
         fig_place = st.empty()
-        fig, ax_time = plt.subplots(1,1)
+        fig, [ax_time, ax_mfcc] = plt.subplots(2,1)
+        
         times = (np.arange(0, len(sound_data))) / sr
         ax_time.plot(times, sound_data)
+        
+        X = librosa.feature.mfcc(sample/1.0)       
+        ax_mfcc.cla()
+        librosa.display.specshow(X, x_axis='time')
+        
         fig_place.pyplot(fig)
         
         data_pred = cnn.samplePred(cnn, sound_data)
@@ -161,7 +169,7 @@ def main():
             st.success('PLotting the data...') 
             
             #Play the sounds
-            st.audio(sample)
+            # st.audio(sample)
             
             #Do Prediction
             data_pred = cnn.samplePred(cnn, sample/1.0)
