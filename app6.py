@@ -72,7 +72,7 @@ def DoTheTest(fn, filepath):
         times = (np.arange(0, len(sound_data))) / sr
         ax_time.plot(times, sound_data)
         
-        X = librosa.feature.mfcc(sample/1.0)       
+        X = librosa.feature.mfcc(sound_data/1.0)       
         ax_mfcc.cla()
         librosa.display.specshow(X, x_axis='time')
         
