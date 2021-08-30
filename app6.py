@@ -73,7 +73,9 @@ def DoTheTest(fn, filepath):
         s1 = classes[data_pred_class[0]]
         s2 = np.round(float(data_pred[0,data_pred_class])*100, 4)
         st.text("Predict class: {} for {}%".format(s1, s2))
-
+        
+        for i in range(len(classes)):
+            st.text(i)
 def main():
     
     st.header("Classificaion for lung condition DEMO")
