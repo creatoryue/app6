@@ -75,7 +75,7 @@ def DoTheTest(fn, filepath):
         st.text("Predict class: {} for {}%".format(s1, s2))
         
         for i in range(len(classes)):
-            st.text(i)
+            st.text(data_pred[0][i])
 def main():
     
     st.header("Classificaion for lung condition DEMO")
