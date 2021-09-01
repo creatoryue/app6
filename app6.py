@@ -107,10 +107,11 @@ def do_filter(y, N):
 def main():
     
     st.header("Classificaion for lung condition DEMO")
-    '1. Please prepare your microphone.'
-    '2. Press "START" to breathe NORMALLY toward your microphone.'
-    '3. Wait for 35 seconds to record your breathing sounds.'
-    '4. Press "Result!!" to show the results. Have fun!!'
+    '1. Please open the page using "Chrome" browser.'
+    '2. Please prepare your microphone.'
+    '3. Press "START" to breathe NORMALLY toward your microphone.'
+    '4. Wait for 35 seconds to record your breathing sounds.'
+    '5. Press "Result!!" to show the results. Have fun!!'
     
     "### Recording"
     
