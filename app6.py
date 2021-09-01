@@ -64,6 +64,7 @@ def DoTheTest(fn, filepath):
         #Load the sound data
         sound_data, sr = librosa.load(filepath, sr=44100)
         # st.text(sound_data)
+        st.dataframe(sound_data)
         
         # Plot in time domain and frequency domain
         fig_place = st.empty()
@@ -92,6 +93,15 @@ def DoTheTest(fn, filepath):
         
         for i in range(len(classes)):
             st.text('{}: {}%'.format(classes[i],np.round(data_pred[0][i]*100,4)))
+            
+def match_target_amplitude(sound, target_dBFS):
+    change_in_dBFS = target_dBFS - sound.dBFS
+    return sound.apply_gain(change_in_dBFS)
+
+def do_filter(y, N):
+    y_filter = np.convolve(y, np.ones(N)/N, mode='same')
+    return y_filter
+    
 def main():
     
     st.header("Classificaion for lung condition DEMO")
@@ -145,15 +155,24 @@ def main():
             # try:
             # st.text('Click!')
             temp_sound_chunk = sound_chunk
+            
+            #preprocessing normalization
+            sound_chunk = match_target_amplitude(sound_chunk, -20.0)  
+            
             sound_chunk_mono = sound_chunk.set_channels(1) # Stereo to mono
             sample = np.array(sound_chunk_mono.get_array_of_samples())
             # sample = np.array(sound_chunk.get_array_of_samples())
+            
+            # Normalization 
+            sample = sample/np.max(sample)
+            # Filter
+            sample = do_filter(sample, 10)
             
             fig_place = st.empty()
             fig, [ax_time, ax_mfcc] = plt.subplots(2,1)
             
             ax_time.cla()
-            times = (np.arange(-len(sample), 0)) / sound_chunk.frame_rate
+            times = np.arange(0, len(sample)) / sound_chunk.frame_rate
             ax_time.plot(times, sample)
             
             
@@ -166,19 +185,25 @@ def main():
                 # st.error('Something wrong with librosa.feature.mfcc ...')
                 
             ax_mfcc.cla()
-            librosa.display.specshow(X, x_axis='time')
+            img = librosa.display.specshow(X, x_axis='time')
+            fig.colorbar(img, ax=ax_mfcc)
+            ax_mfcc.set(title='MFCC')
             fig_place.pyplot(fig)
-            st.success('PLotting the data...') 
+            
+            st.success('Success for plotting the data') 
             
             #Play the sounds
             # st.audio(sample)
             
-            #Do Prediction
-            data_pred = cnn.samplePred(cnn, sample/1.0)
-            st.text('Results')
-            for i in range(len(classes)):
-                st.text('{}: {}%'.format(classes[i],np.round(data_pred[0][i]*100,4)))
-
+            try:
+                #Do Prediction
+                data_pred = cnn.samplePred(cnn, sample/1.0)
+                st.text('Results')
+                for i in range(len(classes)):
+                    st.text('{}: {}%'.format(classes[i],np.round(data_pred[0][i]*100,4)))
+            except:
+                st.error('Recording mest be over 35 seconds. Please press STOP and try again.')
+                
 if __name__ == '__main__':
     import os
 
