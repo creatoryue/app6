@@ -166,20 +166,23 @@ def main():
             sample = np.array(sound_chunk_mono.get_array_of_samples())
             # sample = np.array(sound_chunk.get_array_of_samples())
             
-            # Normalization 
-            sample = sample/np.max(sample)
             # Filter
-            sample = do_filter(sample, 2)
+            sample = do_filter(sample, 5)
+            
+            # Normalization 
+            sample = (sample-np.min(sample)) / (np.max(sample)-np.min(sample))
+            # sample = sample / np.linalg.norm(sample)
+            
+
             
             fig_place = st.empty()
-            fig, [ax_time, ax_mfcc] = plt.subplots(2,1, gridspec_kw={"top": 2.0, "bottom": 0.5})
+            fig, [ax_time, ax_mfcc] = plt.subplots(2,1, gridspec_kw={"top": 1.5, "bottom": 0.5})
             
             
             
             ax_time.cla()
             times = np.arange(0, len(sample)) / sound_chunk.frame_rate
             ax_time.plot(times, sample)
-            
             
             # try:
             # X = librosa.load(sound_chunk)
