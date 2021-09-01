@@ -68,7 +68,9 @@ def DoTheTest(fn, filepath):
         
         # Plot in time domain and frequency domain
         fig_place = st.empty()
-        fig, [ax_time, ax_mfcc] = plt.subplots(nrows=2, ncols=1)
+        fig, [ax_time, ax_mfcc] = plt.subplots(nrows=2, ncols=1, gridspec_kw={"top": 1.5, "bottom": 0.2})
+        fig.tight_layout()
+        
         
         times = (np.arange(0, len(sound_data))) / sr
         ax_time.plot(times, sound_data)
@@ -123,11 +125,11 @@ def main():
         st.info('Now condition: Stop recording.')
     
     # Test1 & Test
-    DoTheTest('Test1', DATA_DIR_VOICE_1)
-    DoTheTest('Test2', DATA_DIR_VOICE_2)
+    DoTheTest('Example: Normal', DATA_DIR_VOICE_1)
+    DoTheTest('Example: COPD(severe)', DATA_DIR_VOICE_2)
             
     if webrtc_ctx.audio_receiver:
-        st.info('Now strat recording.\n Please breathe toward the microphone.')
+        st.info('Now start recording.\n Please breathe toward the microphone.')
         try:
             audio_frames = webrtc_ctx.audio_receiver.get_frames(timeout=1)
         except:
@@ -169,7 +171,9 @@ def main():
             sample = do_filter(sample, 10)
             
             fig_place = st.empty()
-            fig, [ax_time, ax_mfcc] = plt.subplots(2,1)
+            fig, [ax_time, ax_mfcc] = plt.subplots(2,1, gridspec_kw={"top": 2.0, "bottom": 0.5})
+            
+            
             
             ax_time.cla()
             times = np.arange(0, len(sample)) / sound_chunk.frame_rate
@@ -188,6 +192,7 @@ def main():
             img = librosa.display.specshow(X, x_axis='time')
             fig.colorbar(img, ax=ax_mfcc)
             ax_mfcc.set(title='MFCC')
+            
             fig_place.pyplot(fig)
             
             st.success('Success for plotting the data') 
