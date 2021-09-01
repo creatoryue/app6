@@ -169,7 +169,7 @@ def main():
             # Normalization 
             sample = sample/np.max(sample)
             # Filter
-            sample = do_filter(sample, 10)
+            sample = do_filter(sample, 2)
             
             fig_place = st.empty()
             fig, [ax_time, ax_mfcc] = plt.subplots(2,1, gridspec_kw={"top": 2.0, "bottom": 0.5})
