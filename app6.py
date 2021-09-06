@@ -33,11 +33,8 @@ WEBRTC_CLIENT_SETTINGS = ClientSettings(
     },
 )
 
-import os
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(ROOT_DIR, 'data')
 
-from settings import DATA_DIR_VOICE_1, DATA_DIR_VOICE_2
+from settings import ROOT_DIR, DATA_DIR, DATA_DIR_VOICE_1, DATA_DIR_VOICE_2, DATA_DIR_VOICE_3, DATA_DIR_VOICE_4
 
 # Load Model 
 cnn = loadModel.CNN
@@ -113,6 +110,17 @@ def main():
     '4. Wait for 35 seconds to record your breathing sounds.'
     '5. Press "Result!!" to show the results. Have fun!!'
     
+    
+    "### Examples"
+    DoTheTest('Example: Normal', DATA_DIR_VOICE_1)
+    # DoTheTest('Example: COPD(midl)', DATA_DIR_VOICE_2)
+    DoTheTest('Example: COPD(severe)', DATA_DIR_VOICE_3)
+    # DoTheTest('Example: Interstitial Lung Disease', DATA_DIR_VOICE_4)
+    
+    '### Collect your information'
+    name = st.text_input('Name')
+    
+    
     "### Recording"
     
     webrtc_ctx = webrtc_streamer(
@@ -125,9 +133,7 @@ def main():
     if not webrtc_ctx.audio_receiver:
         st.info('Now condition: Stop recording.')
     
-    # Test1 & Test
-    DoTheTest('Example: Normal', DATA_DIR_VOICE_1)
-    DoTheTest('Example: COPD(severe)', DATA_DIR_VOICE_2)
+
             
     if webrtc_ctx.audio_receiver:
         st.info('Now start recording.\n Please breathe toward the microphone.')
@@ -135,7 +141,7 @@ def main():
             audio_frames = webrtc_ctx.audio_receiver.get_frames(timeout=1)
         except:
             logger.warning("Queue is empty. Abort.")
-            st.error('ohoh')
+            st.error('Please press STOP and try again!!')
             
         sound_chunk = pydub.AudioSegment.empty()
         for audio_frame in audio_frames:
@@ -183,6 +189,10 @@ def main():
             ax_time.cla()
             times = np.arange(0, len(sample)) / sound_chunk.frame_rate
             ax_time.plot(times, sample)
+            if len(name) < 1:
+                ax_time.set(title='Your breathing sounds')
+            else:
+                ax_time.set(title='{}\'s breathing sounds'.format(name))
             
             # try:
             # X = librosa.load(sound_chunk)
