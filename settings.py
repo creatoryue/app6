@@ -6,7 +6,9 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DATA_DIR = os.path.join(ROOT_DIR, 'data')
 DATA_DIR_VOICE_1 = os.path.join(DATA_DIR, 'yue_breathing_0823.aac')
-DATA_DIR_VOICE_2 = os.path.join(DATA_DIR, 'COPD(severe)_ie_1_3.5_comp_0.08_vol_400.m4a')
+DATA_DIR_VOICE_2 = os.path.join(DATA_DIR, 'COPD(mild)_ie_1_5_comp_0.10_vol_400.m4a')
+DATA_DIR_VOICE_3 = os.path.join(DATA_DIR, 'COPD(severe)_ie_1_3.5_comp_0.08_vol_400.m4a')
+DATA_DIR_VOICE_4 = os.path.join(DATA_DIR, 'interstitial_ie_1_2.8_comp_0.10_vol_250.m4a')
 
 MODEL_DIR = os.path.join(ROOT_DIR, 'models')
 MODEL_H5 = os.path.join(MODEL_DIR, 'CNN_for4lungcondition_20210717.h5')
