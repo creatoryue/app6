@@ -13,6 +13,9 @@ DATA_DIR_VOICE_4 = os.path.join(DATA_DIR, 'interstitial_ie_1_2.8_comp_0.10_vol_2
 MODEL_DIR = os.path.join(ROOT_DIR, 'models')
 MODEL_H5 = os.path.join(MODEL_DIR, 'CNN_for4lungcondition_20210717.h5')
 
+IMG_DIR = os.path.join(ROOT_DIR, 'img')
+GIF1_DIR = os.path.join(IMG_DIR, 'breath_toward_microphone.gif')
+
 def saveWavFile(fn):    
     WAVE_OUTPUT_FILE = os.path.join(DATA_DIR, "{}.wav".format(fn))
     return WAVE_OUTPUT_FILE
