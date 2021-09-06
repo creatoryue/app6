@@ -34,7 +34,7 @@ WEBRTC_CLIENT_SETTINGS = ClientSettings(
 )
 
 
-from settings import ROOT_DIR, DATA_DIR, DATA_DIR_VOICE_1, DATA_DIR_VOICE_2, DATA_DIR_VOICE_3, DATA_DIR_VOICE_4
+from settings import ROOT_DIR, DATA_DIR, DATA_DIR_VOICE_1, DATA_DIR_VOICE_2, DATA_DIR_VOICE_3, DATA_DIR_VOICE_4, GIF1_DIR
 
 # Load Model 
 cnn = loadModel.CNN
@@ -110,6 +110,8 @@ def main():
     '4. Wait for 35 seconds to record your breathing sounds.'
     '5. Press "Result!!" to show the results. Have fun!!'
     
+    '### Demo'
+    st.image(GIF1_DIR)
     
     "### Examples"
     DoTheTest('Example: Normal', DATA_DIR_VOICE_1)
