@@ -66,7 +66,7 @@ def DoTheTest(fn, filepath):
         # Plot in time domain and frequency domain
         fig_place = st.empty()
         fig, [ax_time, ax_mfcc] = plt.subplots(nrows=2, ncols=1, gridspec_kw={"top": 1.5, "bottom": 0.2})
-        fig.tight_layout()
+        # fig.tight_layout()
         
         
         times = (np.arange(0, len(sound_data))) / sr
