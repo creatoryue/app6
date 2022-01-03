@@ -105,7 +105,7 @@ def main():
     
     st.header("Classificaion for lung condition DEMO")
     '1. Please open the page using "Chrome" browser.'
-    '2. Please prepare your microphone and press DELECT DEVICE to choose your microphone device you use.'
+    '2. Please prepare your microphone and press SELECT DEVICE to choose your microphone device you use.'
     '3. Press "START" to breathe NORMALLY toward your microphone.'
     '4. Wait for 35 seconds to record your breathing sounds.'
     '5. Press "Result!!" to show the results. Have fun!!'
